@@ -191,11 +191,12 @@ export default class OEmbed {
                      document.body.append(script);
                    }
 
-                   container.appendChild(caption);
                    const embedIsReady = this.embedIsReady(container);
                    embedIsReady.then(() => {
                      container.classList.remove(this.CSS.containerLoading);
                    });
+
+                   container.appendChild(caption);
 
                    this.element = container;
 
@@ -226,6 +227,7 @@ export default class OEmbed {
                   * @return {EmbedData}
                   */
                  save() {
+                   console.log(this.data);
                    return this.data;
                  }
 
@@ -442,7 +444,7 @@ export default class OEmbed {
                   * @return {Promise<any>} - result that all mutations have finished
                   */
                  embedIsReady(targetNode) {
-                   const PRELOADER_DELAY = 450;
+                   const PRELOADER_DELAY = 1000;
 
                    let observer = null;
 
@@ -450,6 +452,8 @@ export default class OEmbed {
                      observer = new MutationObserver(
                        debounce(resolve, PRELOADER_DELAY)
                      );
+                     console.log(targetNode);
+                     debugger;
                      observer.observe(targetNode, {
                        childList: true,
                        subtree: true

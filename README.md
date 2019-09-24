@@ -7,36 +7,10 @@ Tool uses Editor.js pasted patterns handling and inserts iframe with embedded co
 
 ## Installation
 
-### Install via NPM
-
-Get the package
-
-```shell
-npm i --save-dev @editorjs/embed
-```
-
-Include module at your application
-
-```javascript
-const Embed = require("@editorjs/embed");
-```
-
 ### Download to your project's source dir
 
 1. Upload folder `dist` from repository
 2. Add `dist/bundle.js` file to your page.
-
-### Load from CDN
-
-You can load specific version of package from [jsDelivr CDN](https://www.jsdelivr.com/package/npm/@editorjs/embed).
-
-`https://cdn.jsdelivr.net/npm/@editorjs/embed@2.0.0`
-
-Then require this script on page with Editor.js.
-
-```html
-<script src="..."></script>
-```
 
 ## Usage
 
@@ -48,7 +22,7 @@ var editor = EditorJS({
 
   tools: {
     ...
-    embed: Embed,
+    embed: OEmbed,
   },
 
   ...
@@ -66,7 +40,7 @@ var editor = EditorJS({
   tools: {
     ...
     embed: {
-      class: Embed,
+      class: OEmbed,
       config: {
         services: {
           youtube: true,
@@ -150,7 +124,7 @@ var editor = EditorJS({
   tools: {
     ...
     embed: {
-      class: Embed,
+      class: OEmbed,
       inlineToolbar: true
     },
   },
