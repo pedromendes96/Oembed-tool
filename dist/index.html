@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="editor">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="./bundle.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>
+        const editor = new EditorJS({
+                /**
+                 * Id of Element that should contain the Editor
+                 */
+                holderId: 'editor',
+
+                /**
+                 * Available Tools list.
+                 * Pass Tool's class or Settings object for each Tool you want to use
+                 */
+                tools: {
+                    embed: {
+                        class: Embed,
+                        inlineToolbar: true,
+                        config: {
+                            services: {
+                                youtube: true,
+                                instagram: {
+                                    regex: /(https?:\/\/(?:www\.)?instagram\.com\/p\/([^\/?#&]+)).*/g,
+                                    oembedUrl: "https://api.instagram.com/oembed",
+                                },
+                                "twitter-tweet": {
+                                    regex: /^https?:\/\/twitter\.com\/(\w+)\/status(es)?\/(\d+)$/,
+                                    oembedUrl: "https://publish.twitter.com/oembed",
+                                },
+                                "twitter-moments": {
+                                    regex: /^https?:\/\/twitter\.com\/i\/moments?\/(\d+)$/,
+                                    oembedUrl: "https://publish.twitter.com/oembed",
+                                },
+                                "twitter-timeline": {
+                                    regex: /^https?:\/\/twitter\.com\/(\w+)$/,
+                                    oembedUrl: "https://publish.twitter.com/oembed",
+                                },
+                                "facebook-post" : {
+                                    regex: /(https:\/\/www\.facebook\.com\/.+\/(posts|activity)\/.+|https:\/\/www\.facebook\.com\/photo\.php\?fbid=.+|https:\/\/www\.facebook\.com\/(photos|questions)\/.+|https:\/\/www\.facebook\.com\/permalink\.php\?story_fbid=.+|https:\/\/www\.facebook\.com\/media\/set\?set=.+|https:\/\/www\.facebook\.com\/notes\/.+\/.+\/.+)/,
+                                    oembedUrl : "https://www.facebook.com/plugins/post/oembed.json"
+                                },
+                                "facebook-video" : {
+                                    regex: /(https:\/\/www.facebook.com\/.+\/videos\/.+|https:\/\/www\.facebook\.com\/video\.php\?(id|v)=.+)/,
+                                    oembedUrl : "https://www.facebook.com/plugins/video/oembed.json"
+                                },
+                                "pinterest-pin": {
+                                    regex: /https?:\/\/www.pinterest.com\/pin\/([^\/\?\&]*)\//,
+                                    embedUrl: 'https://www.pinterest.com/pin/<%= remote_id %>/',
+                                    html: '<a data-pin-do="embedPin" data-pin-terse="true"><\/a><script async defer src="\/\/assets.pinterest.com\/js\/pinit.js"><\/script>',
+                                    id: (groups) => {
+                                        return  groups[0]
+                                    }
+                                },
+                                "pinterest-board" : {
+                                    regex: /https?:\/\/www.pinterest.com\/([^\/\?\&]*)\/([^\/\?\&]*)\//,
+                                    embedUrl: 'https://www.pinterest.com/<%= remote_id %>',
+                                    html: '<a data-pin-do="embedBoard" data-pin-board-width="400" data-pin-scale-height="240" data-pin-scale-width="80"></a><script async defer src="\/\/assets.pinterest.com\/js\/pinit.js"><\/script>',
+                                    id: (groups) => groups.join('/')
+                                },
+                                "pinterest-profile": {
+                                    regex: /https?:\/\/www.pinterest.com\/([^\/\?\&]*)\//,
+                                    embedUrl: 'https://www.pinterest.com/<%= remote_id %>',
+                                    html: '<a data-pin-do="embedUser" data-pin-board-width="400" data-pin-scale-height="240" data-pin-scale-width="80"></a><script async defer src="\/\/assets.pinterest.com\/js\/pinit.js"><\/script>',
+                                    id: (groups) => groups[0]
+                                },
+                            },
+                            serverOembedUrl : "http://localhost:8000/",
+                        }
+                    },
+                },
+            })
+    </script>
+</body>
+</html>
