@@ -265,6 +265,7 @@ export default class OEmbed {
                        height
                      };
                    } else if (serviceInfo.oembedUrl) {
+                     var fetchUrl;
                      if (serviceInfo.useServerSide && this.serverOembedUrl) {
                        var params = {
                          oembedUrl : serviceInfo.oembedUrl,
@@ -333,6 +334,7 @@ export default class OEmbed {
                          height,
                          width,
                          oembedUrl,
+                         useServerSide,
                          id
                        } = service;
                        var data = [
@@ -344,6 +346,7 @@ export default class OEmbed {
                            html,
                            height,
                            width,
+                           useServerSide,
                            id
                          }
                        ];
@@ -452,8 +455,6 @@ export default class OEmbed {
                      observer = new MutationObserver(
                        debounce(resolve, PRELOADER_DELAY)
                      );
-                     console.log(targetNode);
-                     debugger;
                      observer.observe(targetNode, {
                        childList: true,
                        subtree: true
