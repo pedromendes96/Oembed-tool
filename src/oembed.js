@@ -187,15 +187,13 @@ export default class OEmbed {
                    const embedIsReady = this.embedIsReady(container);
                    embedIsReady.then(() => {
                      container.classList.remove(this.CSS.containerLoading);
+                     for (let index = 0; index < loadScripts.length; index++) {
+                       const element = loadScripts[index];
+                       var script = document.createElement("script");
+                       script.setAttribute("src", element.getAttribute("src"));
+                       document.body.appendChild(script);
+                     }
                    });
-
-                   for (let index = 0; index < loadScripts.length; index++) {
-                     var head = document.getElementsByTagName('head')[0];
-                     const element = loadScripts[index];
-                     var script = document.createElement("script");
-                     script.setAttribute("src", element.getAttribute("src"));
-                     head.appendChild(script);
-                   }
 
                    container.appendChild(caption);
 

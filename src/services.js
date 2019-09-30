@@ -166,7 +166,7 @@ export default {
     regex: /https?:\/\/www.pinterest.com\/pin\/([^\/\?\&]*)\/(((\?|\&)([^=]+)\=([^&]+))*)?/,
     embedUrl: "https://www.pinterest.com/pin/<%= remote_id %>/",
     html:
-      '<a data-pin-do="embedPin" data-pin-terse="true"></a><script async defer src="//assets.pinterest.com/js/pinit.js"></script>',
+      '<a data-pin-do="embedPin" data-pin-terse="true"></a><script async defer src="//assets.pinterest.com/js/pinit_main.js"></script>',
     id: groups => {
       return groups[0];
     }
@@ -175,14 +175,14 @@ export default {
     regex: /https?:\/\/www.pinterest.com\/([^\/\?\&]*)\/([^\/\?\&]*)\/(((\?|\&)([^=]+)\=([^&]+))*)?/,
     embedUrl: "https://www.pinterest.com/<%= remote_id %>",
     html:
-      '<a data-pin-do="embedBoard" data-pin-board-width="400" data-pin-scale-height="240" data-pin-scale-width="80"></a><script async defer src="//assets.pinterest.com/js/pinit.js"></script>',
+      '<a data-pin-do="embedBoard" data-pin-board-width="400" data-pin-scale-height="240" data-pin-scale-width="80"></a><script async defer src="//assets.pinterest.com/js/pinit_main.js"></script>',
     id: groups => groups.join("/")
   },
   "pinterest-profile": {
     regex: /https?:\/\/www.pinterest.com\/([^\/\?\&]*)\/(((\?|\&)([^=]+)\=([^&]+))*)?/,
     embedUrl: "https://www.pinterest.com/<%= remote_id %>",
     html:
-      '<a data-pin-do="embedUser" data-pin-board-width="400" data-pin-scale-height="240" data-pin-scale-width="80"></a><script async defer src="//assets.pinterest.com/js/pinit.js"></script>',
+      '<a data-pin-do="embedUser" data-pin-board-width="400" data-pin-scale-height="240" data-pin-scale-width="80"></a><script async defer src="//assets.pinterest.com/js/pinit_main.js"></script>',
     id: groups => groups[0]
   }
 };
