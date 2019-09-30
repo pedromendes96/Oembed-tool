@@ -30,57 +30,27 @@
                         inlineToolbar: true,
                         config: {
                             services: {
+                                vimeo: true,
                                 youtube: true,
-                                instagram: {
-                                    regex: /(https?:\/\/(?:www\.)?instagram\.com\/p\/([^\/?#&]+)).*(((\?|\&)([^=]+)\=([^&]+))*)?/g,
-                                    oembedUrl: "https://api.instagram.com/oembed",
-                                    useServerSide: true,
-                                },
-                                "twitter-tweet": {
-                                    regex: /^https?:\/\/twitter\.com\/(\w+)\/status(es)?\/(\d+)(((\?|\&)([^=]+)\=([^&]+))*)?$/,
-                                    oembedUrl: "https://publish.twitter.com/oembed",
-                                    useServerSide: true,
-                                },
-                                "twitter-moments": {
-                                    regex: /^https?:\/\/twitter\.com\/i\/moments?\/(\d+)(((\?|\&)([^=]+)\=([^&]+))*)?$/,
-                                    oembedUrl: "https://publish.twitter.com/oembed",
-                                    useServerSide: true,
-                                },
-                                "twitter-timeline": {
-                                    regex: /^https?:\/\/twitter\.com\/(\w+)(((\?|\&)([^=]+)\=([^&]+))*)?$/,
-                                    oembedUrl: "https://publish.twitter.com/oembed",
-                                    useServerSide: true,
-                                },
-                                "facebook-post" : {
-                                    regex: /(https:\/\/www\.facebook\.com\/.+\/(posts|activity)\/.+|https:\/\/www\.facebook\.com\/photo\.php\?fbid=.+|https:\/\/www\.facebook\.com\/(photos|questions)\/.+|https:\/\/www\.facebook\.com\/permalink\.php\?story_fbid=.+|https:\/\/www\.facebook\.com\/media\/set\?set=.+|https:\/\/www\.facebook\.com\/notes\/.+\/.+\/.+)(((\?|\&)([^=]+)\=([^&]+))*)?/,
-                                    oembedUrl : "https://www.facebook.com/plugins/post/oembed.json",
-                                    useServerSide: true,
-                                },
-                                "facebook-video" : {
-                                    regex: /(https:\/\/www.facebook.com\/.+\/videos\/.+|https:\/\/www\.facebook\.com\/video\.php\?(id|v)=.+)(((\?|\&)([^=]+)\=([^&]+))*)?/,
-                                    oembedUrl : "https://www.facebook.com/plugins/video/oembed.json",
-                                    useServerSide : true,
-                                },
-                                "pinterest-pin": {
-                                    regex: /https?:\/\/www.pinterest.com\/pin\/([^\/\?\&]*)\/(((\?|\&)([^=]+)\=([^&]+))*)?/,
-                                    embedUrl: 'https://www.pinterest.com/pin/<%= remote_id %>/',
-                                    html: '<a data-pin-do="embedPin" data-pin-terse="true"><\/a><script async defer src="\/\/assets.pinterest.com\/js\/pinit.js"><\/script>',
-                                    id: (groups) => {
-                                        return  groups[0]
-                                    }
-                                },
-                                "pinterest-board" : {
-                                    regex: /https?:\/\/www.pinterest.com\/([^\/\?\&]*)\/([^\/\?\&]*)\/(((\?|\&)([^=]+)\=([^&]+))*)?/,
-                                    embedUrl: 'https://www.pinterest.com/<%= remote_id %>',
-                                    html: '<a data-pin-do="embedBoard" data-pin-board-width="400" data-pin-scale-height="240" data-pin-scale-width="80"></a><script async defer src="\/\/assets.pinterest.com\/js\/pinit.js"><\/script>',
-                                    id: (groups) => groups.join('/')
-                                },
-                                "pinterest-profile": {
-                                    regex: /https?:\/\/www.pinterest.com\/([^\/\?\&]*)\/(((\?|\&)([^=]+)\=([^&]+))*)?/,
-                                    embedUrl: 'https://www.pinterest.com/<%= remote_id %>',
-                                    html: '<a data-pin-do="embedUser" data-pin-board-width="400" data-pin-scale-height="240" data-pin-scale-width="80"></a><script async defer src="\/\/assets.pinterest.com\/js\/pinit.js"><\/script>',
-                                    id: (groups) => groups[0]
-                                },
+                                coub: true,
+                                vine: true,
+                                imgur: true,
+                                gfycat: true,
+                                "twitch-channel": true,
+                                "twitch-video": true,
+                                "yandex-music-album": true,
+                                "yandex-music-track": true,
+                                "yandex-music-playlist": true,
+                                codepen: true,
+                                instagram: true,
+                                "twitter-tweet": true,
+                                "twitter-moments": true,
+                                "twitter-timeline": true,
+                                "facebook-post": true,
+                                "facebook-video": true,
+                                "pinterest-pin": true,
+                                "pinterest-board": true,
+                                "pinterest-profile": true,
                             },
                             serverOembedUrl : "http://casclient0.dnoticias.pt:8000/editor/oembed",
                         }
