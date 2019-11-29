@@ -9,6 +9,8 @@
 <body>
     <div id="editor">
     </div>
+
+    <button onclick="onClick()">SAVE</button>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
     <script src="./bundle.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -18,14 +20,32 @@
                 /**
                  * Id of Element that should contain the Editor
                  */
-                holderId: 'editor',
+                holder: 'editor',
 
                 /**
                  * Available Tools list.
                  * Pass Tool's class or Settings object for each Tool you want to use
                  */
+                data: {}
+                // {
+                // "time": 1575039518808,
+                //     "blocks": [
+                //         {
+                //             "data": {
+                //                 "html": " View this post on Instagram <a href=\"https://www.instagram.com/p/B2pDMamnGtZ/?utm_source=ig_embed&amp;utm_campaign=loading\" target=\"_blank\">Faltam poucos dias para a estreia do espectáculo de @corpodormente no Casino da Madeira. Já não sobram muitos bilhetes. Agarre o seu antes que esgote. À venda nos locais habituais.</a>A post shared by <a href=\"https://www.instagram.com/dnoticiaspt/?utm_source=ig_embed&amp;utm_campaign=loading\" target=\"_blank\"> Diário de Notícias Madeira</a> (@dnoticiaspt) on Sep 20, 2019 at 10:28am PDT\n",
+                //                 "width": 658,
+                //                 "source": "https://www.instagram.com/p/B2pDMamnGtZ/",
+                //                 "caption": "Faltam poucos dias para a estreia do espectáculo de @corpodormente no Casino da Madeira. Já não sobram muitos bilhetes. Agarre o seu antes que esgote. À venda nos locais habituais.",
+                //                 "service": "instagram"
+                //             },
+                //             "type": "oembed"
+                //         }
+                //     ],
+                //     "version": "2.15.1"
+                // }
+                ,
                 tools: {
-                    embed: {
+                    oembed: {
                         class: Embed,
                         inlineToolbar: true,
                         config: {
@@ -52,11 +72,19 @@
                                 "pinterest-board": true,
                                 "pinterest-profile": true,
                             },
-                            serverOembedUrl : "http://localhost:8000/editor/oembed",
+                            serverOembedUrl : "http://casclient6.dnoticias.pt:9016/editor/oembed/",
                         }
                     },
                 },
-            })
+            });
+
+            function onClick() {
+                editor.save().then((outputData) => {
+                    console.log('Article data: ', outputData)
+                }).catch((error) => {
+                    console.log('Saving failed: ', error)
+                });
+            }
     </script>
 </body>
 </html>
